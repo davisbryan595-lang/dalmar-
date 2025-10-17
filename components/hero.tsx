@@ -1,26 +1,11 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import { ChevronLeft, ChevronRight, Phone, Calendar } from "lucide-react"
+import { Phone, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Hero() {
-  const [sliderPosition, setSliderPosition] = useState(50)
-  const [isDragging, setIsDragging] = useState(false)
-
-  const handleMouseDown = () => setIsDragging(true)
-  const handleMouseUp = () => setIsDragging(false)
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return
-
-    const container = e.currentTarget
-    const rect = container.getBoundingClientRect()
-    const newPosition = ((e.clientX - rect.left) / rect.width) * 100
-    setSliderPosition(Math.max(0, Math.min(100, newPosition)))
-  }
-
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image */}
@@ -28,7 +13,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url(/placeholder.svg?height=1080&width=1920&query=professional%20car%20detailing%20mobile%20service)",
+            "url(/dhero.jpg)",
         }}
       >
         <div className="absolute inset-0 bg-black/60" />
@@ -83,54 +68,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Before/After Slider */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="absolute bottom-8 left-4 right-4 md:left-8 md:right-8 max-w-md mx-auto"
-      >
-        <div
-          className="relative h-48 md:h-64 rounded-xl overflow-hidden cursor-col-resize group"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseUp}
-        >
-          {/* Before Image */}
-          <div className="absolute inset-0">
-            <img src="/dirty-car-before.png" alt="Before detailing" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
-
-          {/* After Image */}
-          <div className="absolute inset-0 overflow-hidden" style={{ width: `${sliderPosition}%` }}>
-            <img
-              src="/clean-shiny-car-after-detailing.jpg"
-              alt="After detailing"
-              className="w-full h-full object-cover"
-              style={{ width: `${(100 / sliderPosition) * 100}%` }}
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
-
-          {/* Slider Handle */}
-          <div
-            className="absolute top-0 bottom-0 w-1 bg-primary transition-smooth group-hover:w-2"
-            style={{ left: `${sliderPosition}%` }}
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full p-2 shadow-lg">
-              <ChevronLeft size={16} className="text-white" />
-              <ChevronRight size={16} className="text-white -ml-4" />
-            </div>
-          </div>
-
-          {/* Labels */}
-          <div className="absolute top-4 left-4 text-white font-semibold text-sm">Before</div>
-          <div className="absolute top-4 right-4 text-white font-semibold text-sm">After</div>
-        </div>
-      </motion.div>
     </section>
   )
 }
