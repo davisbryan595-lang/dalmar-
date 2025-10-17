@@ -23,13 +23,16 @@ export default function Navbar({ scrolled }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center group-hover:animate-glow transition-smooth">
-              <span className="text-white font-bold text-lg">D</span>
+          <Link href="#" className="flex items-center gap-2">
+            <div className="w-8 h-8">
+              <img
+                src="/dalmar-removebg-preview.png"
+                alt="Dalmar's Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <span className="font-bold text-lg hidden sm:inline">Dalmar's</span>
           </Link>
-
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8">
             {navLinks.map((link) => (
