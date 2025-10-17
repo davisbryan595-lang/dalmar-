@@ -24,7 +24,7 @@ export default function Navbar({ scrolled }: NavbarProps) {
         <div className="flex justify-between items-center h-16">
           {/* Logo only */}
           <Link href="#" className="flex items-center">
-            <div className="w-6 h-6 sm:w-8 sm:h-8"> {/* Adjusted size to match previous text */}
+            <div className="w-18 h-18 sm:w-24 sm:h-24"> {/* 3x size */}
               <img
                 src="/dalmar-removebg-preview.png"
                 alt="Dalmar's Logo"
